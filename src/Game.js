@@ -10,7 +10,7 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.keys = []
-    
+
     this.gameOver = false
     this.gameTime = 0
     this.gravity = 1
@@ -55,9 +55,9 @@ export default class Game {
 
   checkCollisions(object1, object2) {
     return object1.x < object2.x + object2.width &&
-           object1.x + object1.width > object2.x &&
-           object1.y < object2.y + object2.height &&
-           object1.height + object1.y > object2.y
+      object1.x + object1.width > object2.x &&
+      object1.y < object2.y + object2.height &&
+      object1.height + object1.y > object2.y
   }
 
   draw(context) {
@@ -67,7 +67,7 @@ export default class Game {
     this.enemies.forEach(enemy => enemy.draw(context))
   }
 
-  displayAmmo(context){
+  displayAmmo(context) {
     context.fillStyle = '#000'
     context.font = '20px serif'
     context.fillText(`Ammo: ${this.ammo}`, 10, 20)
