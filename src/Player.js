@@ -66,7 +66,7 @@ export default class Player {
   }
 
   shoot() {
-    if (this.game.ammo <= 0) {
+    if (this.game.ammo <= 0 || this.game.gameOver) {
       return
     }
     this.projectiles.push(new Projectile(this.game, this.x, this.y, this.faceLeft))
