@@ -55,6 +55,14 @@ export default class Player {
   }
 
   shoot() {
+    if (this.game.ammo <= 0) {
+      return
+    }
     this.projectiles.push(new Projectile(this.game, this.x, this.y, this.faceLeft))
+    this.game.ammo--
+  }
+
+  reload() {
+    this.game.ammo = 10
   }
 }

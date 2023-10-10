@@ -15,6 +15,9 @@ export default class InputHandler {
       if (event.key === ' ') {
         this.game.player.shoot()
       }
+      if (event.key === 'r') {
+        this.game.player.reload()
+      }
       if (event.key === 'd') {
         this.game.debug = !this.game.debug
       }

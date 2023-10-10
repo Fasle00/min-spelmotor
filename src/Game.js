@@ -12,6 +12,8 @@ export default class Game {
     this.gravity = 1
     this.debug = false
 
+    this.ammo = 10
+
     this.player = new Player(this)
   }
 
@@ -23,6 +25,9 @@ export default class Game {
   }
 
   draw(context) {
+    context.fillStyle = '#000'
+    context.font = '20px serif'
+    context.fillText(`Ammo: ${this.ammo}`, 10, 20)
     this.player.draw(context)
   }
 }
