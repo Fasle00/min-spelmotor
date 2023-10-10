@@ -8,10 +8,14 @@ export default class Player {
     this.x = 50
     this.y = 100
 
+    this.projectiles = []
+
+    this.frameX = 0
+
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 10
-    this.projectiles = []
+
     this.faceLeft = false
   }
 
@@ -52,6 +56,13 @@ export default class Player {
 
     context.fillStyle = '#f00'
     context.fillRect(this.x, this.y, this.width, this.height)
+
+    if (this.game.debug) {
+        context.strokeRect(this.x, this.y, this.width, this.height)
+        context.fillStyle = 'black'
+        context.font = '12px Arial'
+        context.fillText(this.frameX, this.x, this.y - 5)
+      }
   }
 
   shoot() {
