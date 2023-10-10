@@ -1,12 +1,12 @@
 export default class Projectile {
-    constructor(game, x, y, faceingLeft) {
+    constructor(game, x, y) {
       this.game = game
       this.width = 4
       this.height = 4
       this.x = x
       this.y = y
   
-      this.speed = (faceingLeft)? -5 : 5
+      this.speed = (this.game.player.faceLeft)? -5 : 5
       this.damage = 1
       this.markedForDeletion = false
     }
