@@ -1,3 +1,5 @@
+import Projectile from "./Projectile"
+
 export default class Player {
   constructor(game) {
   this.game = game
@@ -9,16 +11,21 @@ export default class Player {
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 10
+    this.projectiles = []
+    this.faceLeft = false
   }
 
   update(deltaTime) {
     if (this.game.keys.includes('ArrowLeft')) {
       this.speedX = -this.maxSpeed
+      this.faceLeft = true
     } else if (this.game.keys.includes('ArrowRight')) {
       this.speedX = this.maxSpeed
+      this.faceLeft = false
     } else {
       this.speedX = 0
     }
+
     if (this.game.keys.includes('ArrowUp')) {
       this.speedY = -this.maxSpeed
     } else if (this.game.keys.includes('ArrowDown')) {
@@ -27,12 +34,27 @@ export default class Player {
       this.speedY = 0
     }
 
+    this.projectiles.forEach((projectile) => {
+      projectile.update()
+    })
+    this.projectiles = this.projectiles.filter(
+      (projectile) => !projectile.markedForDeletion
+    )
+
     this.x += this.speedX
     this.y += this.speedY
   }
 
   draw(context) {
+    this.projectiles.forEach((projectile) => {
+      projectile.draw(context)
+    })
+
     context.fillStyle = '#f00'
     context.fillRect(this.x, this.y, this.width, this.height)
+  }
+
+  shoot() {
+    this.projectiles.push(new Projectile(this.game, this.x, this.y, this.faceLeft))
   }
 }
